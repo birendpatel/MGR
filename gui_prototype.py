@@ -1,10 +1,7 @@
 """
-Name: GUI Prototype
-Developer: Biren Patel
-Date Created: 2020 January 03
-Last Modified: 2020 January 13
+Author: Biren Patel
 Description: GUI prototype for accounting and legal software
-Python Version: 3.8.1
+Python Version: 3.8.3
 
 Priority Tasks:
 1. Save file location for reconciliations
@@ -204,10 +201,10 @@ class version(QWidget):
         self.text_2 = QLabel("biren.dilip.patel@gmail.com")
         self.text_2.setAlignment(Qt.AlignCenter)
 
-        self.text_3 = QLabel("Beta Version 0.1.0")
+        self.text_3 = QLabel("Beta Version 0.2.0")
         self.text_3.setAlignment(Qt.AlignCenter)
 
-        self.text_4 = QLabel("Developed in Python 3.8.1 with PySide2 5.14.0")
+        self.text_4 = QLabel("Developed in Python 3.8.3 with PySide2 5.14.2")
         self.text_4.setAlignment(Qt.AlignCenter)
 
         #layout

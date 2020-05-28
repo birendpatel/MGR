@@ -1,8 +1,5 @@
 """
-Name: Accounts Reconciliation Task
-Developer: Biren Patel
-Date Created: 2020 January 02
-Last Modified: 2020 January 13
+Author: Biren Patel
 Description: Accounts reconcilation on corporate bank statements. Linked to the
 reconciliation task widget in the GUI application.
 """
@@ -34,7 +31,7 @@ def reconcile(bank_path, reco_path, progress_bar):
     #regular expression setup
     find_tx_tag = r'^TXEFILE'
     del_tx_tag_head = r'^TXEFILE\*0'
-    del_tx_tag_tail = r'-0$'
+    del_tx_tag_tail = r'-\d$'
 
     #read bank statement file and keep only required columns
     bank_DF = pd.read_csv(bank_path)
@@ -143,7 +140,7 @@ def reconcile(bank_path, reco_path, progress_bar):
     reco_DF.columns = reco_DF.iloc[0]
     reco_DF = reco_DF.iloc[1:]
 
-    #inner join bank data frame to reconciliation data frame
+    #left join bank data frame to reconciliation data frame
     data = bank_DF.merge(reco_DF, how='left', on='Account ID')
 
     #all good, pass control back
