@@ -1,8 +1,5 @@
-"""
-Author: Biren Patel
-Description: Accounts reconcilation on corporate bank statements. Linked to the
-reconciliation task widget in the GUI application.
-"""
+# Copyright (C) 2021 Biren Patel. GNU General Public License v3.0.
+# Accounts reconciliation on corporate bank statements
 
 import pandas as pd
 from enum import Enum

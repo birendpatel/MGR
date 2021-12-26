@@ -1,14 +1,7 @@
-"""
-Author: Biren Patel
-Description: GUI prototype for accounting and legal software
-Python Version: 3.8.3
+#! /usr/bin/python3
 
-Priority Tasks:
-1. Save file location for reconciliations
-2. errors on reconciliation to stop progress bar and stop task, then inform user
-   on the GUI interface of problem (--> contact admin)
-3. stylesheet script
-"""
+# Copyright (C) 2021 Biren Patel, GNU General Public License v3.0.
+# PySide2 GUI
 
 import sys
 from time import sleep
