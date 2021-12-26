@@ -23,7 +23,7 @@ from PySide2.QtWidgets import QAction, QLabel, QPushButton, QFileDialog
 from PySide2.QtWidgets import QProgressBar
 
 #local imports
-import task_reconcile as TR
+import reconcile 
 from style import style_sheet
 
 class mainWindow(QMainWindow):
@@ -332,7 +332,7 @@ class reconcile(QWidget):
         """
         executes the main reconciliation task once both files are provided.
 
-        enumerations from TR module:
+        enumerations from reconcile module:
         NULL_STATUS = -1
         SUCCESS = 0
         FAIL_BANK_ACCT_LEN = 1
@@ -351,10 +351,10 @@ class reconcile(QWidget):
             self.generate_notice.setText("Working...")
 
             data, status_code = \
-            TR.reconcile(self.bank_file, self.reco_file, self.progress_bar)
+            reconcile.reconcile(self.bank_file, self.reco_file, self.progress_bar)
 
-            if status_code == TR.status.SUCCESS:
-                TR.create_xlsx(data, self.save_file)
+            if status_code == reconcile.status.SUCCESS:
+                reconcile.create_xlsx(data, self.save_file)
                 self.generate_notice.setText("Finished!")
                 sleep(1.5)
             else:
