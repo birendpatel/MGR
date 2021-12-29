@@ -9,7 +9,7 @@ from time import sleep
 #Qt imports
 from PySide2.QtCore import Slot, Qt, QRect
 from PySide2.QtGui import QPixmap
-from PySide2.QtWidgets import QApplication, QSplashScreen, QMainWindow
+from PySide2.QtWidgets import QApplication, QMainWindow
 from PySide2.QtWidgets import QVBoxLayout, QHBoxLayout, QGridLayout
 from PySide2.QtWidgets import QWidget, QStackedWidget
 from PySide2.QtWidgets import QAction, QLabel, QPushButton, QFileDialog
@@ -359,20 +359,6 @@ class reconcile(QWidget):
 if __name__ == "__main__":
     application = QApplication([])
 
-    #create splash screen and run an animation before launch
-    splash_screen = QSplashScreen(QPixmap("splash_image.png"))
-    splash_screen.showMessage("(0%) Loading Modules...", alignment=66)
-    splash_screen.show()
-
-    for i in range(1,101):
-        msg = "({}%) Loading Modules...".format(i)
-        splash_screen.showMessage(msg, alignment=66)
-        application.processEvents()
-        sleep(.01)
-
-    splash_screen.close()
-
-    #create main window and launch application
     window = mainWindow()
     window.setStyleSheet(style_sheet)
     window.show()
