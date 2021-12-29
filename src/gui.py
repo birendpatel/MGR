@@ -19,7 +19,9 @@ from PySide2.QtWidgets import QProgressBar
 import reconcile 
 from style import style_sheet
 
-class mainWindow(QMainWindow):
+#-------------------------------------------------------------------------------
+
+class MainWindow(QMainWindow):
     def __init__(self):
         """
         Inherits from QMainWindow and setup for window and menu bar
@@ -95,17 +97,6 @@ class mainWindow(QMainWindow):
         reconcile_action.triggered.connect(self.menu_task_reconcile)
         self.task_menu.addAction(reconcile_action)
 
-        ### HELP ###
-
-        #help menu
-        self.help_menu = self.menu.addMenu("Help")
-
-        #version option in help
-        version_action = QAction("Version Info", self)
-        version_action.setShortcut("Ctrl+V")
-        version_action.triggered.connect(self.menu_help_version)
-        self.help_menu.addAction(version_action)
-
     def create_central_widgets(self):
         """
         Application uses central widgets to load menu selections
@@ -113,13 +104,11 @@ class mainWindow(QMainWindow):
         #create all widget instances to be used as central widgets
         self.launch_widget = launch()
         self.reconcile_widget = reconcile(self.progress_bar)
-        self.version_widget = version()
 
         #add above widget instances to a stack instance
         self.stacked_widgets = QStackedWidget()
         self.stacked_widgets.addWidget(self.launch_widget)
         self.stacked_widgets.addWidget(self.reconcile_widget)
-        self.stacked_widgets.addWidget(self.version_widget)
 
         #on application start set the launch widget to display
         self.stacked_widgets.setCurrentWidget(self.launch_widget)
@@ -154,13 +143,7 @@ class mainWindow(QMainWindow):
         #self.test_local.setGeometry(QRect(100, 100, 400, 200))
         #self.test_local.show()
 
-    @Slot()
-    def menu_help_version(self):
-        """
-        Helper for version_action in self.create_menu
-        """
-        self.stacked_widgets.setCurrentWidget(self.version_widget)
-        self.setCentralWidget(self.stacked_widgets)
+#-------------------------------------------------------------------------------
 
 #central widget on application launch
 class launch(QWidget):
@@ -180,41 +163,14 @@ class launch(QWidget):
         self.layout.addWidget(self.text)
         self.setLayout(self.layout)
 
-class version(QWidget):
-    def __init__(self):
-        """
-        Basic software and authoring information on version tab in help menu.
-        """
-        super().__init__()
 
-        #create labels and align text to dead center
-        self.text_1 = QLabel("Biren Patel")
-        self.text_1.setAlignment(Qt.AlignCenter)
-
-        self.text_2 = QLabel("biren.dilip.patel@gmail.com")
-        self.text_2.setAlignment(Qt.AlignCenter)
-
-        self.text_3 = QLabel("Beta Version 0.2.0")
-        self.text_3.setAlignment(Qt.AlignCenter)
-
-        self.text_4 = QLabel("Developed in Python 3.8.3 with PySide2 5.14.2")
-        self.text_4.setAlignment(Qt.AlignCenter)
-
-        #layout
-        self.layout = QVBoxLayout()
-        self.layout.addStretch()
-        self.layout.addWidget(self.text_1)
-        self.layout.addWidget(self.text_2)
-        self.layout.addWidget(self.text_3)
-        self.layout.addWidget(self.text_4)
-        self.layout.addStretch()
-        self.setLayout(self.layout)
+#-------------------------------------------------------------------------------
 
 class reconcile(QWidget):
     def __init__(self, progress_bar):
         """
         reconciliation item in task menu. initialize sets up widgets and layout
-        but the central widget controls are in the mainWindow class.
+        but the central widget controls are in the MainWindow class.
         """
         super().__init__()
 
@@ -356,10 +312,13 @@ class reconcile(QWidget):
 
             self.progress_bar.reset()
 
+#-------------------------------------------------------------------------------
+
 if __name__ == "__main__":
     application = QApplication([])
 
-    window = mainWindow()
+    window = MainWindow()
     window.setStyleSheet(style_sheet)
     window.show()
+    
     application.exec_()
